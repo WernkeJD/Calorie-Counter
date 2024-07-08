@@ -1,0 +1,1 @@
+I am currently recieveing the body of the page everytime a new tab or site is opened. I need to adjust this so that the user can choose when the page gets parsed by adding a button the the html and creating a popup.js script.
