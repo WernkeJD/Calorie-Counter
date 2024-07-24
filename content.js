@@ -1,17 +1,13 @@
-(function() {
-    const bodyContent = document.body.innerText;
-    console.log('Body content:', bodyContent);
-  
-    // Send the extracted content to the background script
-  chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+console.log('Content script loaded');
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    console.log('Message received in content script:', message);
+
     if (message.action === 'fetchContent') {
+        console.log('Fetch content action received in content script');
         const bodyContent = document.body.innerText;
+        console.log('Sending body content:', bodyContent);
         sendResponse({ content: bodyContent });
     }
-  });
-
-  
-    console.log('Content script loaded and message sent');
-  })();
-  
+});
   
