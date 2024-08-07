@@ -5,8 +5,11 @@ document.addEventListener("DOMContentLoaded", function () {
   if (fetchContentButton) {
     fetchContentButton.addEventListener("click", () => {
       console.log(
-        "Fetch Content button clicked, sending message to background script"
+        "Fetch Content button clicked"
       );
+
+      showSpinner();
+
       chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
         chrome.scripting.executeScript(
           {
@@ -15,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
           },
           (results) => {
             document.getElementById("content").innerText = results[0].result;
+            hideSpinner();
           }
         );
       });
@@ -24,7 +28,22 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+
+function showSpinner(){
+  console.log('show spinner called');
+  document.getElementById('loading-spinner').style.display = 'block';
+  document.getElementById('initial-content').style.display = 'none';
+}
+
+function hideSpinner(){
+  console.log('hide spinner called');
+  document.getElementById('loading-spinner').style.display = 'none';
+  document.getElementById('initial-content').style.display = 'block';
+}
+
 function getNutritionData() {
+
+
   function getInnerText() {
     return document.body.innerText;
   }
@@ -82,4 +101,5 @@ function getNutritionData() {
   }
 
   return callEdamamAPI();
+
 }

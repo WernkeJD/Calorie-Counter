@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>My Extension Popup</title>
-    <style>
-      body { width: 200px; }
-      h1 { font-size: 16px; }
-    </style>
+    <title>Calorie Counter</title>
+    <link rel="stylesheet" href="popup.css">
   </head>
   <body>
-    <h1>Hello, World!</h1>
-    <p>This is my Chrome extension popup.</p>
-    <button id="fetchContent">Fetch Page Content</button>
+    <div id="initial-content">
+      <h1>Count your Calories!</h1>
+      <p>If you are on the recipie tab you would like to find the calories for simply click the button below to get the calories and macros!</p>
+      <button id="fetchContent">Fetch Calories</button>
+    </div>
+    <div id="spinner-container">
+      <div id="loading-spinner"></div>
+    </div>
     <script src="popup.js"></script>
     <div id="content"></div>
   </body>
