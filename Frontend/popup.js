@@ -17,7 +17,14 @@ document.addEventListener("DOMContentLoaded", function () {
             function: getNutritionData,
           },
           (results) => {
-            document.getElementById("content").innerText = results[0].result;
+            const {calories, protein, fat, carbs} = results[0].result;
+
+            document.getElementById("content").innerText = 
+            `Calories: ${calories} kcal\n` +
+            `Protein: ${protein} g\n` +
+            `Fat: ${fat} g\n` +
+            `Carbs: ${carbs} g`;
+
             hideSpinner();
           }
         );
@@ -97,7 +104,19 @@ function getNutritionData() {
     );
     // return response
     const data = await response_1.json();
-    return data.totalNutrients.ENERC_KCAL.quantity;
+
+    const calories = data.totalNutrients.ENERC_KCAL.quantity.toFixed(2);
+    const protein = data.totalNutrients.PROCNT.quantity.toFixed(2);
+    const fat = data.totalNutrients.FAT.quantity.toFixed(2);
+    const carbs = data.totalNutrients.CHOCDF.quantity.toFixed(2);
+
+
+    return{
+      calories,
+      protein,
+      fat,
+      carbs
+    }
   }
 
   return callEdamamAPI();
