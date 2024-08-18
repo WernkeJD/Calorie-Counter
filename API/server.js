@@ -1,6 +1,8 @@
 import express from 'express';
 import fetch from 'node-fetch';
 import pkg from 'body-parser';
+import dotenv from 'dotenv';
+dotenv.config();
 const { json } = pkg;
 
 
@@ -11,9 +13,10 @@ app.get('/', (req, res) => {
     res.send('Hello, World!');
   });
 
-const OPENAI_API_KEY = "";
-const EDAMAM_APP_ID = "";
-const EDAMAM_API_KEY = "";
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY
+const EDAMAM_APP_ID = process.env.EDAMAM_APP_ID
+const EDAMAM_API_KEY = process.env.EDAMAM_API_KEY
+
 
 app.post('/getNutritionData', async (req, res) => {
     const { text } = req.body
