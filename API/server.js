@@ -17,6 +17,7 @@ const OPENAI_API_KEY = process.env.OPENAI_API_KEY
 const EDAMAM_APP_ID = process.env.EDAMAM_APP_ID
 const EDAMAM_API_KEY = process.env.EDAMAM_API_KEY
 
+console.log(OPENAI_API_KEY)
 
 app.post('/getNutritionData', async (req, res) => {
     const { text } = req.body
@@ -34,13 +35,13 @@ app.post('/getNutritionData', async (req, res) => {
             messages: [
               {
                 role: "user",
-                content: text + "Can you list the ingredients with the quantities for me and only print the answer? Extract the Items, Encapsulate Each Item in Quotes: Surround each item with double quotes. This denotes each item as a string. Separate Items with Commas: Place a comma between each item to separate them within the list. Enclose in Square Brackets: Place the entire list of items inside square brackets to define it as an array. Basically, return json which has each ingredient with its quanteities",
+                content: text + "Can you list the ingredients with the quantities for me and only print the answer? Extract the Items, Encapsulate Each Item in Quotes: Surround each item with double quotes. This denotes each item as a string. Separate Items with Commas: Place a comma between each item to separate them within the list. Enclose in Square Brackets: Place the entire list of items inside square brackets to define it as an array. Basically, return json which has each ingredient with its quanteities always use the key Ingredients with a capital I",
               },
             ],
           }),
         });
         const gptData = await gptResponse.json();
-        console.log(text)
+        console.log(gptData)
         // res.status(200).send(gptData);
         const ingredients = gptData.choices[0].message.content;
         console.log(ingredients);
