@@ -4,7 +4,7 @@
     "version": "2.0.0",
     "description": "An extension that will automatically track calories for a given recipie on a stie",
     "action":{
-        "default_popup": "Frontend/popup.html"
+        "default_popup": "popup.html"
     },
     "icons": {
         "48": "images/calorieIcon.png"
