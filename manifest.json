@@ -1,26 +1,16 @@
 {
     "manifest_version": 3,
     "name": "Calorie Counter",
-    "version": "1.0.2",
+    "version": "2.0.0",
     "description": "An extension that will automatically track calories for a given recipie on a stie",
     "action":{
         "default_popup": "Frontend/popup.html"
     },
     "icons": {
-        "48": "images/calorieIcon.png"
+        "48": "Frontend/images/calorieIcon.png"
     },
     "permissions":[
         "activeTab",
-        "storage",
         "scripting"
-    ],
-    "background": {
-        "service_worker": "background.js"
-    },
-    "content_scripts": [
-        {
-            "matches": ["<all_urls>"],
-            "js": ["content.js"]
-        }
     ]
 }
