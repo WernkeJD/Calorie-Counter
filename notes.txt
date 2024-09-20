@@ -1,0 +1,1 @@
+added the button and the logic to pull the body of the page when the user requests but it is not returning anything. need to fix this error.

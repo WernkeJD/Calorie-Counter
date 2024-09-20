@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Calorie Counter",
-    "version": "2.0.0",
+    "version": "3.0.0",
     "description": "An extension that will automatically track calories for a given recipie on a stie",
     "action":{
         "default_popup": "Frontend/popup.html"
@@ -11,7 +11,8 @@
     },
     "permissions":[
         "activeTab",
-        "scripting"
+        "scripting",
+        "storage"
     ],
     "host_permissions": [
         "<all_urls>"
