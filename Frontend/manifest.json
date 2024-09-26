@@ -12,8 +12,6 @@
     "permissions":[
         "activeTab",
         "scripting"
-<<<<<<< HEAD:manifest.json
-=======
     ],
     "background": {
         "service_worker": "background.js",
@@ -24,6 +22,5 @@
             "matches": ["<all_urls>"],
             "js": ["content.js"]
         }
->>>>>>> 4c73a98c4825de75fa96f1148053f2c9760bf51f:Frontend/manifest.json
     ]
 }

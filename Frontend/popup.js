@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
               const response = await fetch('https://calorie-counter-k4kc.onrender.com/getNutritionData', {
                 method: 'POST',
                 headers: {
+                  'source': 'extension',
                   'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ text: text }),

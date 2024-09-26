@@ -4,14 +4,16 @@ import pkg from 'body-parser';
 import dotenv from 'dotenv';
 dotenv.config();
 const { json } = pkg;
+import url from 'url';
+import fs from 'fs';
+import bodyParser from 'body-parser';
+import cors from 'cors'
 
 
 const app = express();
 app.use(json());
 
-app.get('/', (req, res) => {
-    res.send('Hello, World!');
-  });
+//Start of Extension Logic
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY
 const EDAMAM_APP_ID = process.env.EDAMAM_APP_ID
@@ -76,8 +78,45 @@ app.post('/getNutritionData', async (req, res) => {
         res.status(500).send(error);
     }
 });
+
+//End Extension Logic
+
+//Strt of Cut the Crap Logic
+
+// app.use(cors());
+
+
+// app.get('/', (req, res) => {
+//   const queryObject = url.parse(req.url, true).query;
+
+//   let indexFile = fs.readFileSync('frontend/public/index.html', 'utf8');
+
+//   if (queryObject.url) {
+//       const decodedString = Buffer.from(queryObject.url, 'base64').toString('utf8');
+//       indexFile = indexFile.replace('abcde', `${queryObject.url}`);
+//   }
+
+//   res.send(indexFile)
+
+//   console.log(queryObject);
+// });
+
+app.get('/', (req, res) => {
+
+  const source = req.headers['source']
+
+  if (source == 'website'){
+    res.send('this is from the website')
+  }else{
+    res.send('hello its me');
+  }
+});
+
+
+
+//End of Cut the Crap Logic
     
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server.js Server running on port ${PORT}`);
 });
