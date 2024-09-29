@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
       chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         const pageUrl = tabs[0].url; 
-        const newUrl = "https://vl7w7gh4-3000.use.devtunnels.ms/";
+        const newUrl = "http://localhost:3000/";
   
         chrome.tabs.create({ url: `${newUrl}?url=${encodeURIComponent(pageUrl)}` });
   

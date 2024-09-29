@@ -79,7 +79,6 @@ app.post('/getNutritionData', async (req, res) => {
     }
 });
 
-//End Extension Logic
 
 //Strt of Cut the Crap Logic
 
@@ -101,20 +100,30 @@ app.post('/getNutritionData', async (req, res) => {
 //   console.log(queryObject);
 // });
 
+app.use(cors());
+
 app.get('/', (req, res) => {
 
   const source = req.headers['source']
 
   if (source == 'website'){
-    res.send('this is from the website')
+    
+      const queryObject = url.parse(req.url, true).query;
+
+      // if (queryObject.url) {
+      //     const decodedString = Buffer.from(queryObject.url, 'base64').toString('utf8');
+      //     indexFile = indexFile.replace('abcde', `${queryObject.url}`);
+      // }
+
+      res.send(queryObject.url.toString())
+
+      console.log(queryObject);
+
   }else{
     res.send('hello its me');
   }
 });
 
-
-
-//End of Cut the Crap Logic
     
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
