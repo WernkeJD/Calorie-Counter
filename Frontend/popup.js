@@ -1,12 +1,6 @@
-
 document.addEventListener("DOMContentLoaded", function () {
   const fetchContentButton = document.getElementById("fetchContent");
-  const fetchCrap = document.getElementById("fetchCrap");
-  // const serving_size_1_button = document.getElementByid("1serving");
-  // const serving_size_2_button = document.getElementByid("2serving");
-  // const serving_size_3_button = document.getElementByid("3serving");
-  // const serving_size_4_button = document.getElementByid("4serving");
-  console.log("Popup script loaded, adding event listener to all buttons");
+  console.log("Popup script loaded, adding event listener to button");
 
 
   if (fetchContentButton) {
@@ -28,7 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
               const response = await fetch('https://calorie-counter-k4kc.onrender.com/getNutritionData', {
                 method: 'POST',
                 headers: {
-                  'source': 'extension',
                   'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ text: text }),
@@ -56,13 +49,6 @@ document.addEventListener("DOMContentLoaded", function () {
   } else {
     console.error("Fetch Content button not found");
   }
-
-  // function updateServing() {
-  //   serving_size_1_button.addEventListener("click", () => {
-  //     console.log(document.getElementById("contnet").innerText)
-  //   })
-
-  // }
   
   function getInnerText() {
     return document.body.innerText;
@@ -78,27 +64,5 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log('hide spinner called');
     document.getElementById('loading-spinner').style.display = 'none';
     document.getElementById('initial-content').style.display = 'block';
-  }
-
-  function base64Encode(str) {
-    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (match, p1) => String.fromCharCode(parseInt(p1, 16))));
-  }
-
-
-  if (fetchCrap) {
-    fetchCrap.addEventListener("click", () => {
-      console.log("Fetch crap clicked");
-  
-      showSpinner();
-  
-      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        const pageUrl = tabs[0].url; 
-        const newUrl = "http://localhost:3000/";
-  
-        chrome.tabs.create({ url: `${newUrl}?url=${encodeURIComponent(pageUrl)}` });
-  
-        hideSpinner();
-      });
-    });
   }
 });
