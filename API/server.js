@@ -4,15 +4,10 @@ import pkg from "body-parser";
 import dotenv from "dotenv";
 import cors from "cors";
 
+import { cutTheCrapPostChatGPTAPI } from "./functions/cutthecrap.js";
+
 dotenv.config();
 const { json } = pkg;
-
-import { postChatGPTAPI } from "./functions/shared.js";
-import {
-  cutTheCrapGetURL,
-  cutTheCrapPostChatGPTAPI,
-  cutTheCrapParseData,
-} from "./functions/cutthecrap.js";
 
 const app = express();
 app.use(json());
@@ -92,17 +87,15 @@ app.post("/getNutritionData", async (req, res) => {
   }
 });
 
-app.post("/cutthecrap", async (req, res) => {
-  const { queryUrl } = req.body;
+app.get("/cutthecrap", async (req, res) => {
+  const { url: queryUrl } = req.query;
 
-  const response = await cutTheCrapGetURL(queryUrl);
-  const gpt_data = await cutTheCrapPostChatGPTAPI(response);
-  const parsed_data = cutTheCrapParseData(gpt_data);
+  const output_data = await cutTheCrapPostChatGPTAPI(queryUrl);
 
-  res.json({ parsed_data: parsed_data });
+  res.json({ output_data: output_data });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5678;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

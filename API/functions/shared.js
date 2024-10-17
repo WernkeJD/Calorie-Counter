@@ -1,22 +1,25 @@
 import dotenv from "dotenv";
 import OpenAI from "openai";
+import { zodResponseFormat } from "openai/helpers/zod";
 
 dotenv.config();
 
 const openai = new OpenAI();
 
-async function postChatGPTAPI(text, textAddition) {
-  const completion = await openai.chat.completions.create({
-    model: "gpt-3.5-turbo",
+async function postChatGPTAPI(object, context, content) {
+  const completion = await openai.beta.chat.completions.parse({
+    model: "gpt-4o-mini-2024-07-18",
     messages: [
+      { role: "system", content: context },
       {
         role: "user",
-        content: `${text}\n${textAddition}`,
+        content: content,
       },
     ],
+    response_format: zodResponseFormat(object, "event"),
   });
 
-  return completion.choices[0].message.content;
+  return completion.choices[0].message.parsed;
 }
 
 export { postChatGPTAPI };
