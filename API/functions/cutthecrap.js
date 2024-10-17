@@ -7,6 +7,12 @@ async function cutTheCrapPostChatGPTAPI(queryUrl) {
       z.object({
         title: z.string(),
         instruction: z.string(),
+        ingredients: z.array(
+          z.object({
+            name: z.string(),
+            quantity: z.string(),
+          })
+        ),
       })
     ),
   });
