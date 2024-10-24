@@ -3,6 +3,9 @@ import { z } from "zod";
 
 async function cutTheCrapPostChatGPTAPI(queryUrl) {
   const RecipeSteps = z.object({
+    title: z.string(),
+    time: z.string(),
+    servings: z.string(),
     steps: z.array(
       z.object({
         title: z.string(),
@@ -19,7 +22,7 @@ async function cutTheCrapPostChatGPTAPI(queryUrl) {
 
   return await postChatGPTAPI(
     RecipeSteps,
-    "Extract the recipe information into detailed steps.",
+    "Extract the recipe information into detailed steps along with information about the cooktime and serving count.",
     queryUrl
   );
 }
