@@ -11,7 +11,7 @@ const { json } = pkg;
 
 const app = express();
 app.use(json());
-app.use(cors({origin: "https://cut-the-crap.onrender.com"})); // Enable CORS for all origins
+app.use(cors({origin: ["https://cut-the-crap.onrender.com", "http://localhost:3000"]})); // Adjust the origin as needed
 
 app.get("/", (req, res) => {
   res.send("Hello, World!");
