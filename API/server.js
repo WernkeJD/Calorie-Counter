@@ -11,7 +11,7 @@ const { json } = pkg;
 
 const app = express();
 app.use(json());
-app.use(cors());
+app.use(cors({origin: "https://cut-the-crap.onrender.com"})); // Enable CORS for all origins
 
 app.get("/", (req, res) => {
   res.send("Hello, World!");
@@ -96,7 +96,7 @@ app.get("/cutthecrap", async (req, res) => {
 });
 
 const PORT = process.env.PORT || 5678;
-const HOST = "192.168.1.39"
+// const HOST = "192.168.1.39"
 app.listen(PORT, () => {
-  console.log(`Server running on http://${HOST}:${PORT}`);
+  console.log(`Server running ${PORT}`);
 });

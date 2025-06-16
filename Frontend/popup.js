@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const fetchContentButton = document.getElementById("fetchContent");
+  const removeCrap = document.getElementById("removeCrap");
   console.log("Popup script loaded, adding event listener to button");
 
 
@@ -65,4 +66,24 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('loading-spinner').style.display = 'none';
     document.getElementById('initial-content').style.display = 'block';
   }
+
+
+
+  if (removeCrap) {
+    removeCrap.addEventListener("click", () => {
+      console.log("remove crap clicked");
+  
+      showSpinner();
+  
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        const pageUrl = tabs[0].url; 
+        const newUrl = "https://cut-the-crap.onrender.com/recipe";
+  
+        chrome.tabs.create({ url: `${newUrl}?url=${pageUrl}` });
+  
+        hideSpinner();
+      });
+    });
+  }
+
 });
